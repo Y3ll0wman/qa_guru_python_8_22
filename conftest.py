@@ -12,19 +12,35 @@ from appium import webdriver
 @pytest.fixture(scope='function')
 def android_mobile_management():
     options = UiAutomator2Options().load_capabilities({
-        'deviceName': 'Pixel_3a_API_34_extension_level_7_x86_64',
-        'appWaitActivity': 'org.wikipedia.*',
-        "app": "C:\Users\Y3ll0w\Desktop\app-alpha-universal-release.apk",
+        # Specify device and os_version for testing
+        'platformName': 'android',
+        'platformVersion': '13.0',
+        'deviceName': 'Samsung Galaxy S23 Ultra',
+
+        # Set URL of the application under test
+        # "app": "bs://sample.app",
+        'app': 'bs://04b49845ae18715f926fe263abfef9701aa7a4d6',
+
+        # Set other BrowserStack capabilities
+        'bstack:options': {
+            'projectName': 'Android tests',
+            'buildName': 'browserstack-wikipedia-build',
+            'sessionName': 'BStack wikipedia_test',
+
+            # Set your access credentials
+            'userName': 'konstantinvarvar_PVsOgD',
+            'accessKey': 'VVA32jN9kwsJHmxS92Wx'
+        }
     })
 
     # browser.config.driver_remote_url = remote_browser_url
     # browser.config.driver_options = options
 
-    # with allure.step('setup app session'):
-    #     browser.config.driver = webdriver.Remote(
-    #         config.remote_browser_url,
-    #         options=options
-    #     )
+    with allure.step('setup app session'):
+        browser.config.driver = webdriver.Remote(
+            'http://hub.browserstack.com/wd/hub',
+            options=options
+        )
 
     browser.config.timeout = 10.0
 
