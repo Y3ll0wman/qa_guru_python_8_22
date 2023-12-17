@@ -11,7 +11,6 @@ def test_search():
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_skip_button')).click()
 
     with step('Type search'):
-        # browser.element((AppiumBy.ACCESSIBILITY_ID, 'Search Wikipedia')).click()
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/search_container')).click()
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/search_src_text')).type('Android')
 
@@ -28,7 +27,6 @@ def test_open_article():
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_skip_button')).click()
 
     with step('Search article'):
-        # browser.element((AppiumBy.ACCESSIBILITY_ID, 'Search Wikipedia')).click()
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/search_container')).click()
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/search_src_text')).type('Android')
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/page_list_item_title')).click()
@@ -36,3 +34,33 @@ def test_open_article():
     # THEN
     with step('Verify article title'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, 'Android'))
+
+
+def test_getting_started():
+    # THEN
+    with step('Verify first welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('The Free Encyclopedia\n…in over 300 languages'))
+
+        # WHEN
+        with step('Press Continue button'):
+            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
+
+        # THEN
+        with step('Verify second welcome screen'):
+            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('New ways to explore'))
+
+        # WHEN
+        with step('Press Continue button'):
+            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
+
+        # THEN
+        with step('Verify third welcome screen'):
+            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Reading lists with sync'))
+
+        # WHEN
+        with step('Press Continue button'):
+            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
+
+        # THEN
+        with step('Verify fourth welcome screen'):
+            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Send anonymous data'))

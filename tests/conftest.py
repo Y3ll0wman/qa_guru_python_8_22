@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 def pytest_addoption(parser):
     parser.addoption(
         "--context",
-        default="local_bstack",
+        default="bstack",
         help="Specify the test context"
     )
 
