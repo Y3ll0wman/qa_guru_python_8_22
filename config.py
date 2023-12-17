@@ -10,6 +10,7 @@ class Config(BaseModel):
     context: str
     remote_url: str = os.getenv('REMOTE_URL')
     device_name: str = os.getenv('DEVICE_NAME')
+    udid: str = os.getenv('UDID')
     appWaitActivity: str = os.getenv('APP_WAIT_ACTIVITY')
     app_local: str = utils.file.abs_path_from_project(os.getenv('APP'))
     app_bstack: str = os.getenv('APP')
@@ -24,13 +25,13 @@ class Config(BaseModel):
 
         if context == 'local_emulator':
             options.set_capability('remote_url', self.remote_url)
-            options.set_capability('deviceName', self.device_name)
+            options.set_capability('udid', self.udid)
             options.set_capability('appWaitActivity', self.appWaitActivity)
             options.set_capability('app', self.app_local)
 
         if context == 'local_real_device':
             options.set_capability('remote_url', self.remote_url)
-            options.set_capability('deviceName', self.device_name)
+            options.set_capability('udid', self.udid)
             options.set_capability('appWaitActivity', self.appWaitActivity)
             options.set_capability('app', self.app_local)
 
@@ -50,6 +51,8 @@ class Config(BaseModel):
                     'accessKey': self.accessKey,
                 },
             )
+
+        print(self.device_name)
 
         return options
 
