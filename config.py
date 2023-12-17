@@ -3,6 +3,7 @@ import os
 from appium.options.android import UiAutomator2Options
 from qa_guru_python_8_22 import utils
 
+
 def to_driver_options(context):
     options = UiAutomator2Options()
 
