@@ -39,26 +39,26 @@ def test_getting_started():
     with step('Verify first welcome screen'):
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('The Free Encyclopedia\n…in over 300 languages'))
 
-        # WHEN
-        with step('Press Continue button'):
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
+    # WHEN
+    with step('Press Continue button'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
 
-        # THEN
-        with step('Verify second welcome screen'):
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('New ways to explore'))
+    # THEN
+    with step('Verify second welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('New ways to explore'))
 
-        # WHEN
-        with step('Press Continue button'):
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
+    # WHEN
+    with step('Press Continue button'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
 
-        # THEN
-        with step('Verify third welcome screen'):
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Reading lists with sync'))
+    # THEN
+    with step('Verify third welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Reading lists with sync'))
 
-        # WHEN
-        with step('Press Continue button'):
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
+    # WHEN
+    with step('Press Continue button'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')).click()
 
-        # THEN
-        with step('Verify fourth welcome screen'):
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Send anonymous data'))
+    # THEN
+    with step('Verify fourth welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Send anonymous data'))
