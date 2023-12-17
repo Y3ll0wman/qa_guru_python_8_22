@@ -3,30 +3,23 @@ import os
 from appium.options.android import UiAutomator2Options
 from qa_guru_python_8_22 import utils
 
-remote_url = os.getenv('REMOTE_URL')
-# remote_url = os.getenv('REMOTE_URL', 'http://127.0.0.1:4723')
-# deviceName = os.getenv('DEVICE_NAME', 'emulator-5554')
-# appWaitActivity = os.getenv('APP_WAIT_ACTIVITY', 'org.wikipedia.*')
-# app = os.getenv('app', './app-alpha-universal-release.apk')
-
-
 def to_driver_options(context):
     options = UiAutomator2Options()
 
     if context == 'local_emulator':
-        # options.set_capability('remote_url', os.getenv('REMOTE_URL'))
+        options.set_capability('remote_url', os.getenv('REMOTE_URL'))
         options.set_capability('deviceName', os.getenv('DEVICE_NAME'))
         options.set_capability('appWaitActivity', os.getenv('APP_WAIT_ACTIVITY'))
         options.set_capability('app', utils.file.abs_path_from_project(os.getenv('APP')))
 
     if context == 'local_real_device':
-        # options.set_capability('remote_url', os.getenv('REMOTE_URL'))
+        options.set_capability('remote_url', os.getenv('REMOTE_URL'))
         options.set_capability('deviceName', os.getenv('DEVICE_NAME'))
         options.set_capability('appWaitActivity', os.getenv('APP_WAIT_ACTIVITY'))
         options.set_capability('app', utils.file.abs_path_from_project(os.getenv('APP')))
 
     if context == 'bstack':
-        # options.set_capability('remote_url', os.getenv('REMOTE_URL'))
+        options.set_capability('remote_url', os.getenv('REMOTE_URL'))
         options.set_capability('deviceName', os.getenv('DEVICE_NAME'))
         options.set_capability('platformName', os.getenv('PLATFORM_NAME'))
         options.set_capability('platformVersion', os.getenv('PLATFORM_VERSION'))

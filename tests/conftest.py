@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 def pytest_addoption(parser):
     parser.addoption(
         "--context",
-        default="local_emulator",
+        default="local_bstack",
         help="Specify the test context"
     )
 
@@ -33,13 +33,13 @@ def context(request):
     return request.config.getoption("--context")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def android_mobile_management(context):
     options = config.to_driver_options(context=context)
 
     with allure.step('setup app session'):
         browser.config.driver = webdriver.Remote(
-            config.remote_url,
+            options.get_capability('remote_url'),
             options=options
         )
 
