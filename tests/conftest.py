@@ -2,7 +2,6 @@ import os
 import allure
 import allure_commons
 import pytest
-import config
 
 from selene import browser, support
 from appium import webdriver
@@ -35,6 +34,7 @@ def context(request):
 
 @pytest.fixture(scope='function', autouse=True)
 def android_mobile_management(context):
+    from config import config
     options = config.to_driver_options(context=context)
 
     with allure.step('setup app session'):
