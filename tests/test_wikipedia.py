@@ -1,6 +1,6 @@
 from allure_commons._allure import step
 from appium.webdriver.common.appiumby import AppiumBy
-from selene import browser, have
+from selene import browser, have, be
 
 
 def test_search():
@@ -15,6 +15,7 @@ def test_search():
     # THEN
     with step('Verify content found'):
         results = browser.all((AppiumBy.ID, 'org.wikipedia.alpha:id/page_list_item_title'))
+        results.wait_until(be.visible)
         results.should(have.size_greater_than(0))
         results.first.should(have.text('Android'))
 
@@ -31,12 +32,14 @@ def test_open_article():
 
     # THEN
     with step('Verify article title'):
+        browser.element((AppiumBy.ACCESSIBILITY_ID, 'Android')).wait_until(be.visible)
         browser.element((AppiumBy.ACCESSIBILITY_ID, 'Android'))
 
 
 def test_getting_started():
     # THEN
     with step('Verify first welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).wait_until(be.visible)
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('The Free Encyclopedia\n…in over 300 languages'))
 
     # WHEN
@@ -45,6 +48,7 @@ def test_getting_started():
 
     # THEN
     with step('Verify second welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).wait_until(be.visible)
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('New ways to explore'))
 
     # WHEN
@@ -53,6 +57,7 @@ def test_getting_started():
 
     # THEN
     with step('Verify third welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).wait_until(be.visible)
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Reading lists with sync'))
 
     # WHEN
@@ -61,4 +66,5 @@ def test_getting_started():
 
     # THEN
     with step('Verify fourth welcome screen'):
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).wait_until(be.visible)
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(have.text('Send anonymous data'))
